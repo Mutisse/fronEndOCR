@@ -14,7 +14,7 @@
     <div class="container">
       <div class="form-header">
         <img
-          src="assets/mozambique-flag.png"
+          src="./public/assets/img/Gemini_Generated_Image_afitl6afitl6afit.jpg"
           alt="Bandeira de Moçambique"
           class="flag"
         />
@@ -289,30 +289,6 @@
         </form>
       </div>
     </div>
-
-    <script>
-      // Adicionando funcionalidade ao botão de submeter imagem
-      document.getElementById('submitImageBtn').addEventListener('click', function() {
-        const fileInput = document.getElementById('fileInput');
-        if (fileInput.files.length > 0) {
-          // Aqui você pode adicionar a lógica para enviar a imagem
-          alert('Imagem submetida com sucesso: ' + fileInput.files[0].name);
-          // Simular progresso
-          const progress = document.getElementById('progress');
-          let width = 0;
-          const interval = setInterval(function() {
-            if (width >= 100) {
-              clearInterval(interval);
-            } else {
-              width++;
-              progress.style.width = width + '%';
-              progress.textContent = width + '%';
-            }
-          }, 20);
-        } else {
-          alert('Por favor, selecione um arquivo primeiro.');
-        }
-      });
-    </script>
+    <script src="./public/js/script.js"></script>
   </body>
-</html>
+</html> 

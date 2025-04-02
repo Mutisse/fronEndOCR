@@ -472,3 +472,28 @@ function formatDate(dateString) {
 window.demoFillForm = function () {
   autoFillForm(simulateOCRResult("demo_bi.pdf"));
 };
+
+// Adicionando funcionalidade ao botão de submeter imagem
+document
+  .getElementById("submitImageBtn")
+  .addEventListener("click", function () {
+    const fileInput = document.getElementById("fileInput");
+    if (fileInput.files.length > 0) {
+      // Aqui você pode adicionar a lógica para enviar a imagem
+      alert("Imagem submetida com sucesso: " + fileInput.files[0].name);
+      // Simular progresso
+      const progress = document.getElementById("progress");
+      let width = 0;
+      const interval = setInterval(function () {
+        if (width >= 100) {
+          clearInterval(interval);
+        } else {
+          width++;
+          progress.style.width = width + "%";
+          progress.textContent = width + "%";
+        }
+      }, 20);
+    } else {
+      alert("Por favor, selecione um arquivo primeiro.");
+    }
+  });
