@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistema Automático de Registo - Moçambique</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./public/css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="form-header">
+        <img
+          src="assets/mozambique-flag.png"
+          alt="Bandeira de Moçambique"
+          class="flag"
+        />
+        <h1>Sistema Automático de Registo</h1>
+      </div>
+
+      <div class="form-body">
+        <div id="uploadArea" class="upload-section">
+          <div class="upload-icon">📄</div>
+          <h3>Carregue seu documento de identificação</h3>
+          <p>BI/Passaporte/Carta de Condução (imagem ou PDF)</p>
+          <input
+            type="file"
+            id="fileInput"
+            class="file-input"
+            accept="image/*,.pdf"
+          />
+          <div class="progress-bar" id="progressBar">
+            <div class="progress" id="progress"></div>
+          </div>
+          <!-- Botão para submeter imagem -->
+          <button type="button" class="btn btn-upload" id="submitImageBtn" style="margin-top: 15px;">
+            <span class="btn-icon">📤</span> Submeter Imagem
+          </button>
+        </div>
+
+        <form id="autoForm">
+          <div id="messageContainer"></div>
+
+          <h2 class="section-title">Dados Pessoais</h2>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nome" required>Nome Completo</label>
+              <input
+                type="text"
+                id="nome"
+                name="nome"
+                placeholder="Ex: João Carlos Sitoe"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="apelido" required>Apelido</label>
+              <input
+                type="text"
+                id="apelido"
+                name="apelido"
+                placeholder="Ex: Sitoe"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="dataNascimento" required>Data de Nascimento</label>
+              <input
+                type="date"
+                id="dataNascimento"
+                name="dataNascimento"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="genero" required>Género</label>
+              <select id="genero" name="genero" required>
+                <option value="">Selecione...</option>
+                <option value="M">Masculino</option>
+                <option value="F">Feminino</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="naturalidade" required>Naturalidade</label>
+              <input
+                type="text"
+                id="naturalidade"
+                name="naturalidade"
+                placeholder="Ex: Maputo"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="nacionalidade" required>Nacionalidade</label>
+              <input
+                type="text"
+                id="nacionalidade"
+                name="nacionalidade"
+                value="Moçambicana"
+                readonly
+                required
+              />
+            </div>
+          </div>
+
+          <h2 class="section-title">Documento de Identificação</h2>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="tipoDocumento" required>Tipo de Documento</label>
+              <select id="tipoDocumento" name="tipoDocumento" required>
+                <option value="">Selecione...</option>
+                <option value="BI">Bilhete de Identidade</option>
+                <option value="PASSAPORTE">Passaporte</option>
+                <option value="DIRE">Carta de Condução</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="numeroDocumento" required>Número do Documento</label>
+              <input
+                type="text"
+                id="numeroDocumento"
+                name="numeroDocumento"
+                placeholder="Ex: 1234567890L"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="dataEmissao" required>Data de Emissão</label>
+              <input type="date" id="dataEmissao" name="dataEmissao" required />
+            </div>
+
+            <div class="form-group">
+              <label for="dataValidade" required>Data de Validade</label>
+              <input
+                type="date"
+                id="dataValidade"
+                name="dataValidade"
+                required
+              />
+            </div>
+          </div>
+
+          <h2 class="section-title">Contactos</h2>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="telefone" required>Telefone</label>
+              <input
+                type="tel"
+                id="telefone"
+                name="telefone"
+                placeholder="Ex: +258 84 123 4567"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Ex: joao.sitoe@gmail.com"
+              />
+            </div>
+          </div>
+
+          <h2 class="section-title">Morada</h2>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="provincia" required>Província</label>
+              <select id="provincia" name="provincia" required>
+                <option value="">Selecione...</option>
+                <option value="Maputo">Maputo</option>
+                <option value="Gaza">Gaza</option>
+                <option value="Inhambane">Inhambane</option>
+                <option value="Sofala">Sofala</option>
+                <option value="Manica">Manica</option>
+                <option value="Tete">Tete</option>
+                <option value="Zambézia">Zambézia</option>
+                <option value="Nampula">Nampula</option>
+                <option value="Cabo Delgado">Cabo Delgado</option>
+                <option value="Niassa">Niassa</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="cidade" required>Cidade/Distrito</label>
+              <input
+                type="text"
+                id="cidade"
+                name="cidade"
+                placeholder="Ex: Matola"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="endereco" required>Endereço Completo</label>
+            <input
+              type="text"
+              id="endereco"
+              name="endereco"
+              placeholder="Ex: Av. Acordos de Lusaka, nº 123"
+              required
+            />
+          </div>
+
+          <h2 class="section-title">Informações Adicionais</h2>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="estadoCivil" required>Estado Civil</label>
+              <select id="estadoCivil" name="estadoCivil" required>
+                <option value="">Selecione...</option>
+                <option value="SOLTEIRO">Solteiro(a)</option>
+                <option value="CASADO">Casado(a)</option>
+                <option value="DIVORCIADO">Divorciado(a)</option>
+                <option value="VIUVO">Viúvo(a)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="profissao">Profissão</label>
+              <input
+                type="text"
+                id="profissao"
+                name="profissao"
+                placeholder="Ex: Engenheiro"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="nomePai">Nome do Pai</label>
+            <input
+              type="text"
+              id="nomePai"
+              name="nomePai"
+              placeholder="Nome completo do pai"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="nomeMae" required>Nome da Mãe</label>
+            <input
+              type="text"
+              id="nomeMae"
+              name="nomeMae"
+              placeholder="Nome completo da mãe"
+              required
+            />
+          </div>
+
+          <div class="form-actions">
+            <button type="button" class="btn btn-secondary" id="clearBtn">
+              <span class="btn-icon">🧹</span> Limpar Formulário
+            </button>
+            <button type="button" class="btn btn-upload" id="uploadBtn">
+              <span class="btn-icon">📁</span> Carregar Documento
+            </button>
+            <button type="submit" class="btn btn-primary" id="submitBtn">
+              <span class="btn-icon">✅</span> Submeter Registo
+            </button>
+          </div>
+
+          <div class="form-footer">
+            <p>* Campos obrigatórios</p>
+            <p>
+              Este formulário está em conformidade com a Lei de Proteção de
+              Dados Pessoais de Moçambique
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script>
+      // Adicionando funcionalidade ao botão de submeter imagem
+      document.getElementById('submitImageBtn').addEventListener('click', function() {
+        const fileInput = document.getElementById('fileInput');
+        if (fileInput.files.length > 0) {
+          // Aqui você pode adicionar a lógica para enviar a imagem
+          alert('Imagem submetida com sucesso: ' + fileInput.files[0].name);
+          // Simular progresso
+          const progress = document.getElementById('progress');
+          let width = 0;
+          const interval = setInterval(function() {
+            if (width >= 100) {
+              clearInterval(interval);
+            } else {
+              width++;
+              progress.style.width = width + '%';
+              progress.textContent = width + '%';
+            }
+          }, 20);
+        } else {
+          alert('Por favor, selecione um arquivo primeiro.');
+        }
+      });
+    </script>
+  </body>
+</html>
